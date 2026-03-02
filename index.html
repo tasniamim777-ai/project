@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>কৃষি মিত্র | গ্রামীণ পণ্যের সেরা বাজার</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --g1: #1a5c38; --g2: #2d7a50; --g3: #3d9e6e; --g4: #52c48a; --g5: #d4edda;
+  --gold: #e8b84b; --gold2: #f5d07a; --gold3: #fff3cd;
+  --brown: #5c3d1e; --cream: #fdf8ef; --white: #ffffff;
+  --text: #1a2e1a; --text2: #4a6741; --text3: #7a9470;
+  --red: #dc3545; --orange: #fd7e14; --blue: #0d6efd;
+  --shadow: 0 4px 24px rgba(26,92,56,0.12);
+  --shadow2: 0 8px 48px rgba(26,92,56,0.18);
+  --radius: 16px; --radius2: 24px;
+  --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Hind Siliguri', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+img { max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+input, select, textarea { font-family: inherit; outline: none; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--g5); }
+::-webkit-scrollbar-thumb { background: var(--g3); border-radius: 3px; }
+
+/* ===== NAVBAR ===== */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: linear-gradient(135deg, var(--g1) 0%, var(--g2) 100%);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.nav-logo-icon {
+  width: 44px; height: 44px; background: var(--gold);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; box-shadow: 0 4px 12px rgba(232,184,75,0.4);
+}
+.nav-logo-text { line-height: 1.1; }
+.nav-logo-title { font-family: 'Noto Serif Bengali', serif; font-size: 20px; color: var(--gold); font-weight: 700; letter-spacing: 0.5px; }
+.nav-logo-sub { font-size: 11px; color: rgba(255,255,255,0.65); }
+.nav-right { display: flex; align-items: center; gap: 8px; }
+.nav-btn {
+  padding: 8px 18px; border-radius: 30px;
+  font-size: 14px; font-weight: 500; transition: var(--transition);
+}
+.nav-btn-ghost { background: transparent; border: 1.5px solid rgba(255,255,255,0.35); color: white; }
+.nav-btn-ghost:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.6); }
+.nav-btn-gold { background: var(--gold); border: none; color: var(--g1); font-weight: 700; box-shadow: 0 4px 12px rgba(232,184,75,0.35); }
+.nav-btn-gold:hover { background: var(--gold2); transform: translateY(-1px); }
+.cart-fab {
+  position: relative; background: white; color: var(--g1);
+  width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: var(--transition);
+}
+.cart-fab:hover { transform: scale(1.1); }
+.cart-badge {
+  position: absolute; top: -4px; right: -4px; background: var(--red);
+  color: white; width: 20px; height: 20px; border-radius: 50%; font-size: 10px;
+  display: flex; align-items: center; justify-content: center; font-weight: 700;
+  border: 2px solid var(--g1);
+}
+.user-avatar {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--gold);
+  display: flex; align-items: center; justify-content: center; color: var(--g1);
+  font-weight: 700; font-size: 14px; cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+/* ===== PAGES ===== */
+.page { display: none; min-height: 100vh; padding-top: 68px; }
+.page.active { display: block; }
+.page-fade { animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== HERO ===== */
+#hero-section {
+  min-height: calc(100vh - 68px);
+  background: linear-gradient(160deg, var(--g1) 0%, var(--g2) 40%, #1a7a40 70%, #0f4d27 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+}
+.hero-bg-pattern {
+  position: absolute; inset: 0; opacity: 0.06;
+  background-image: radial-gradient(circle at 20% 50%, white 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, white 1px, transparent 1px),
+    radial-gradient(circle at 50% 80%, white 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-leaves {
+  position: absolute; right: -100px; top: -100px; width: 600px; height: 600px;
+  background: radial-gradient(ellipse, rgba(82,196,138,0.2) 0%, transparent 70%);
+  border-radius: 50%; animation: float 6s ease-in-out infinite;
+}
+@keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(3deg); } }
+.hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 60px 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); color: var(--gold2); padding: 6px 16px; border-radius: 30px; font-size: 13px; margin-bottom: 20px; }
+.hero-title { font-family: 'Noto Serif Bengali', serif; font-size: clamp(32px,4vw,52px); color: white; line-height: 1.2; font-weight: 900; margin-bottom: 16px; }
+.hero-title span { color: var(--gold); }
+.hero-desc { color: rgba(255,255,255,0.8); font-size: 17px; line-height: 1.7; margin-bottom: 32px; }
+.hero-stats { display: flex; gap: 24px; margin-bottom: 36px; }
+.hero-stat { text-align: center; }
+.hero-stat-num { font-family: 'Noto Serif Bengali', serif; font-size: 28px; color: var(--gold); font-weight: 700; }
+.hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.65); }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-hero-primary { background: var(--gold); color: var(--g1); padding: 14px 32px; border-radius: 40px; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: var(--transition); box-shadow: 0 6px 24px rgba(232,184,75,0.4); }
+.btn-hero-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(232,184,75,0.5); }
+.btn-hero-outline { background: transparent; color: white; padding: 14px 28px; border-radius: 40px; font-size: 16px; border: 2px solid rgba(255,255,255,0.4); display: flex; align-items: center; gap: 8px; transition: var(--transition); }
+.btn-hero-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+.hero-right { display: flex; flex-direction: column; gap: 16px; }
+.hero-card {
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius2);
+  padding: 20px 24px; color: white; display: flex; align-items: center; gap: 16px;
+  animation: slideIn 0.6s ease both;
+}
+.hero-card:nth-child(2) { animation-delay: 0.1s; margin-left: 30px; }
+.hero-card:nth-child(3) { animation-delay: 0.2s; }
+.hero-card:nth-child(4) { animation-delay: 0.3s; margin-left: 20px; }
+@keyframes slideIn { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
+.hero-card-icon { font-size: 36px; }
+.hero-card-text h4 { font-size: 16px; font-weight: 600; }
+.hero-card-text p { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+/* ===== WAVE ===== */
+.wave-divider { display: block; width: 100%; line-height: 0; }
+
+/* ===== SECTION ===== */
+.section { padding: 64px 28px; max-width: 1200px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 48px; }
+.section-label { display: inline-block; background: var(--g5); color: var(--g2); font-size: 13px; font-weight: 600; padding: 4px 14px; border-radius: 20px; margin-bottom: 12px; }
+.section-title { font-family: 'Noto Serif Bengali', serif; font-size: clamp(24px,3vw,36px); color: var(--g1); font-weight: 700; margin-bottom: 12px; }
+.section-desc { color: var(--text3); font-size: 16px; max-width: 520px; margin: 0 auto; }
+
+/* ===== CATEGORIES ===== */
+.categories-grid { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+.cat-chip {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border-radius: 30px; font-size: 15px;
+  background: white; border: 2px solid var(--g5); color: var(--text2);
+  transition: var(--transition); cursor: pointer; font-weight: 500;
+  box-shadow: 0 2px 8px rgba(26,92,56,0.06);
+}
+.cat-chip:hover, .cat-chip.active { background: var(--g1); border-color: var(--g1); color: white; transform: translateY(-2px); box-shadow: var(--shadow); }
+.cat-chip .cat-icon { font-size: 20px; }
+
+/* ===== SEARCH ===== */
+.search-bar {
+  display: flex; gap: 0; max-width: 560px; margin: 0 auto 40px;
+  background: white; border-radius: 40px; overflow: hidden;
+  box-shadow: var(--shadow); border: 2px solid var(--g5);
+}
+.search-bar input { flex: 1; padding: 14px 20px; border: none; font-size: 15px; background: transparent; color: var(--text); }
+.search-bar input::placeholder { color: var(--text3); }
+.search-bar button { background: var(--g1); color: white; padding: 0 24px; font-size: 18px; border: none; transition: var(--transition); }
+.search-bar button:hover { background: var(--g2); }
+
+/* ===== PRODUCTS GRID ===== */
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+.product-card {
+  background: white; border-radius: var(--radius2); overflow: hidden;
+  box-shadow: var(--shadow); transition: var(--transition); position: relative;
+  border: 1px solid rgba(26,92,56,0.06);
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow2); }
+.product-img-wrap { position: relative; height: 200px; overflow: hidden; background: var(--g5); }
+.product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.product-card:hover .product-img-wrap img { transform: scale(1.08); }
+.product-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 64px; background: linear-gradient(135deg, var(--g5), #e8f5e9); }
+.product-badge {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--red); color: white; font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px;
+}
+.product-badge.organic { background: var(--g2); }
+.product-save-badge {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--gold); color: var(--g1); font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px;
+}
+.product-body { padding: 18px; }
+.product-category { font-size: 12px; color: var(--g3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.product-name { font-family: 'Noto Serif Bengali', serif; font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
+.product-farmer { font-size: 13px; color: var(--text3); display: flex; align-items: center; gap: 4px; margin-bottom: 12px; }
+.price-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.price-our { font-family: 'Noto Serif Bengali', serif; font-size: 22px; font-weight: 700; color: var(--g1); }
+.price-market { font-size: 13px; color: var(--text3); text-decoration: line-through; }
+.price-save { font-size: 12px; color: var(--red); font-weight: 600; }
+.product-unit { font-size: 13px; color: var(--text3); }
+.calc-row { background: var(--g5); border-radius: 12px; padding: 10px 14px; margin-bottom: 14px; }
+.calc-row label { font-size: 12px; color: var(--text2); font-weight: 600; display: block; margin-bottom: 6px; }
+.calc-row-inner { display: flex; align-items: center; gap: 8px; }
+.qty-input { width: 80px; padding: 6px 10px; border: 1.5px solid var(--g3); border-radius: 8px; font-size: 15px; font-weight: 600; color: var(--g1); background: white; text-align: center; }
+.calc-result { flex: 1; text-align: right; font-weight: 700; color: var(--g1); font-size: 16px; }
+.btn-order { width: 100%; padding: 12px; border-radius: 12px; background: var(--g1); color: white; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); }
+.btn-order:hover { background: var(--g2); transform: translateY(-2px); }
+.btn-cart { width: 100%; padding: 12px; border-radius: 12px; background: transparent; border: 2px solid var(--g1); color: var(--g1); font-size: 15px; font-weight: 600; transition: var(--transition); margin-top: 8px; }
+.btn-cart:hover { background: var(--g5); }
+
+/* ===== WHY SECTION ===== */
+.why-bg { background: linear-gradient(135deg, var(--g1), var(--g2)); padding: 64px 28px; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+.why-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius2); padding: 32px 24px; text-align: center; color: white; transition: var(--transition); }
+.why-card:hover { background: rgba(255,255,255,0.18); transform: translateY(-4px); }
+.why-icon { font-size: 44px; margin-bottom: 16px; }
+.why-title { font-family: 'Noto Serif Bengali', serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.why-desc { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+
+/* ===== MODALS ===== */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
+  z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: white; border-radius: var(--radius2); width: 100%; max-width: 500px;
+  max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow2);
+  animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes modalIn { from { opacity:0; transform:scale(0.92) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+.modal-header { background: linear-gradient(135deg, var(--g1), var(--g2)); padding: 24px 28px; color: white; display: flex; align-items: center; justify-content: space-between; border-radius: var(--radius2) var(--radius2) 0 0; }
+.modal-title { font-family: 'Noto Serif Bengali', serif; font-size: 20px; font-weight: 700; }
+.modal-close { background: rgba(255,255,255,0.15); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.modal-close:hover { background: rgba(255,255,255,0.3); }
+.modal-body { padding: 28px; }
+.modal-tabs { display: flex; gap: 0; margin-bottom: 24px; background: var(--g5); border-radius: 12px; padding: 4px; }
+.modal-tab { flex: 1; padding: 10px; text-align: center; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition); color: var(--text2); }
+.modal-tab.active { background: var(--g1); color: white; box-shadow: 0 4px 12px rgba(26,92,56,0.25); }
+
+/* ===== FORMS ===== */
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 14px; font-weight: 600; color: var(--text2); margin-bottom: 6px; }
+.form-control {
+  width: 100%; padding: 12px 16px; border: 1.5px solid #e0e8e0; border-radius: 10px;
+  font-size: 15px; font-family: inherit; color: var(--text); background: white;
+  transition: var(--transition);
+}
+.form-control:focus { border-color: var(--g3); box-shadow: 0 0 0 3px rgba(61,158,110,0.12); }
+.form-control::placeholder { color: var(--text3); }
+select.form-control { cursor: pointer; }
+textarea.form-control { resize: vertical; min-height: 90px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn-submit {
+  width: 100%; padding: 14px; background: linear-gradient(135deg, var(--g1), var(--g2));
+  color: white; border-radius: 12px; font-size: 16px; font-weight: 700;
+  transition: var(--transition); box-shadow: 0 4px 16px rgba(26,92,56,0.3); margin-top: 8px;
+}
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,92,56,0.4); }
+.btn-submit:disabled { opacity: 0.65; transform: none; cursor: not-allowed; }
+.divider { display: flex; align-items: center; gap: 12px; color: var(--text3); font-size: 13px; margin: 16px 0; }
+.divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #e0e8e0; }
+
+/* ===== TOAST ===== */
+#toast-container { position: fixed; top: 80px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+.toast {
+  background: white; border-radius: 12px; padding: 14px 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  display: flex; align-items: center; gap: 12px; min-width: 280px; max-width: 380px;
+  border-left: 4px solid var(--g2); animation: toastIn 0.3s ease;
+}
+.toast.error { border-color: var(--red); }
+.toast.warning { border-color: var(--orange); }
+@keyframes toastIn { from { opacity:0; transform:translateX(100%); } to { opacity:1; transform:translateX(0); } }
+@keyframes toastOut { from { opacity:1; transform:translateX(0); } to { opacity:0; transform:translateX(100%); } }
+.toast-icon { font-size: 20px; }
+.toast-msg { flex: 1; font-size: 14px; color: var(--text); font-weight: 500; }
+
+/* ===== LOADING ===== */
+.loading-spinner { display: flex; align-items: center; justify-content: center; padding: 60px; }
+.spinner { width: 48px; height: 48px; border: 4px solid var(--g5); border-top-color: var(--g2); border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.empty-state { text-align: center; padding: 80px 20px; color: var(--text3); }
+.empty-state .empty-icon { font-size: 64px; margin-bottom: 16px; }
+.empty-state p { font-size: 16px; }
+
+/* ===== CART SIDEBAR ===== */
+#cart-sidebar {
+  position: fixed; right: -420px; top: 0; bottom: 0; width: 420px; max-width: 95vw;
+  background: white; z-index: 1500; box-shadow: -8px 0 48px rgba(0,0,0,0.2);
+  display: flex; flex-direction: column; transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+#cart-sidebar.open { right: 0; }
+.cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1400; display: none; }
+.cart-overlay.open { display: block; }
+.cart-header { background: linear-gradient(135deg, var(--g1), var(--g2)); padding: 20px 24px; color: white; display: flex; align-items: center; justify-content: space-between; }
+.cart-header h3 { font-family: 'Noto Serif Bengali', serif; font-size: 20px; font-weight: 700; }
+.cart-body { flex: 1; overflow-y: auto; padding: 16px; }
+.cart-item { display: flex; gap: 14px; padding: 14px; background: var(--cream); border-radius: 14px; margin-bottom: 10px; }
+.cart-item-img { width: 64px; height: 64px; border-radius: 10px; object-fit: cover; background: var(--g5); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; overflow: hidden; }
+.cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+.cart-item-info { flex: 1; }
+.cart-item-name { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.cart-item-price { color: var(--g1); font-weight: 700; font-size: 15px; }
+.cart-item-remove { color: var(--red); background: none; font-size: 20px; }
+.cart-item-qty { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.qty-btn { width: 28px; height: 28px; border-radius: 8px; background: var(--g5); color: var(--g1); font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.qty-btn:hover { background: var(--g1); color: white; }
+.cart-footer { border-top: 1px solid #e8e8e8; padding: 20px 24px; background: white; }
+.cart-total-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; }
+.cart-total-row.grand { font-weight: 700; font-size: 18px; color: var(--g1); border-top: 1px solid #e8e8e8; padding-top: 10px; margin-top: 4px; }
+.btn-checkout { width: 100%; margin-top: 14px; padding: 14px; background: linear-gradient(135deg, var(--g1), var(--g2)); color: white; border-radius: 14px; font-size: 16px; font-weight: 700; transition: var(--transition); }
+.btn-checkout:hover { transform: translateY(-2px); }
+
+/* ===== CHECKOUT MODAL ===== */
+.checkout-modal { max-width: 600px; }
+.payment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.pay-opt {
+  padding: 14px; border-radius: 12px; border: 2px solid #e0e8e0;
+  cursor: pointer; text-align: center; transition: var(--transition); font-size: 14px; font-weight: 600;
+}
+.pay-opt:hover { border-color: var(--g3); }
+.pay-opt.active { border-color: var(--g1); background: var(--g5); color: var(--g1); }
+.pay-opt .pay-icon { font-size: 24px; display: block; margin-bottom: 4px; }
+
+/* ===== FARMER DASHBOARD ===== */
+#farmer-page .dash-header { background: linear-gradient(135deg, var(--g1), var(--g2)); color: white; padding: 40px 28px 60px; text-align: center; }
+#farmer-page .dash-header h2 { font-family: 'Noto Serif Bengali', serif; font-size: 28px; font-weight: 700; }
+.dash-tabs { display: flex; gap: 0; background: white; border-bottom: 2px solid var(--g5); padding: 0 28px; position: sticky; top: 68px; z-index: 50; }
+.dash-tab { padding: 16px 24px; font-size: 15px; font-weight: 600; color: var(--text3); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: var(--transition); display: flex; align-items: center; gap: 8px; }
+.dash-tab.active, .dash-tab:hover { color: var(--g1); border-color: var(--g1); }
+.dash-content { padding: 32px 28px; max-width: 1200px; margin: 0 auto; }
+.stat-cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 16px; margin-bottom: 32px; }
+.stat-card { background: white; border-radius: var(--radius2); padding: 24px; box-shadow: var(--shadow); text-align: center; border-top: 4px solid var(--g2); }
+.stat-card-num { font-family: 'Noto Serif Bengali', serif; font-size: 32px; font-weight: 700; color: var(--g1); }
+.stat-card-label { font-size: 14px; color: var(--text3); margin-top: 4px; }
+
+/* ===== ADMIN ===== */
+#admin-page .admin-header { background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 40px 28px; text-align: center; }
+#admin-page .admin-header h2 { font-family: 'Noto Serif Bengali', serif; font-size: 28px; font-weight: 700; color: var(--gold); }
+.admin-stat-card { background: white; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); text-align: center; border-left: 4px solid var(--g2); }
+.admin-stat-num { font-size: 28px; font-weight: 700; color: var(--g1); }
+.admin-stat-label { font-size: 13px; color: var(--text3); }
+
+/* ===== TABLE ===== */
+.table-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; background: white; }
+thead { background: var(--g1); }
+thead th { color: white; padding: 14px 16px; text-align: left; font-size: 14px; font-weight: 600; white-space: nowrap; }
+tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.2s; }
+tbody tr:hover { background: var(--g5); }
+tbody td { padding: 14px 16px; font-size: 14px; color: var(--text); }
+
+/* ===== BADGES ===== */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-pending { background: #fff3cd; color: #856404; }
+.badge-confirmed { background: #d1ecf1; color: #0c5460; }
+.badge-delivered { background: #d4edda; color: #155724; }
+.badge-cancelled { background: #f8d7da; color: #721c24; }
+.badge-processing { background: #e2d9f3; color: #6f42c1; }
+.badge-approved { background: #d4edda; color: #155724; }
+.badge-unapproved { background: #fff3cd; color: #856404; }
+
+/* ===== STATUS COLORS ===== */
+.status-select { padding: 6px 12px; border-radius: 8px; border: 1.5px solid #e0e8e0; font-family: inherit; font-size: 13px; cursor: pointer; }
+
+/* ===== ADD PRODUCT FORM ===== */
+.add-product-section { background: white; border-radius: var(--radius2); padding: 32px; box-shadow: var(--shadow); }
+.upload-zone { border: 2px dashed #c8e6c9; border-radius: 14px; padding: 32px; text-align: center; cursor: pointer; transition: var(--transition); background: #f9fef9; }
+.upload-zone:hover { border-color: var(--g2); background: var(--g5); }
+.upload-zone input { display: none; }
+.upload-preview { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.preview-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; border: 2px solid var(--g3); }
+.price-compare-box { background: linear-gradient(135deg, var(--g5), #e8f5e9); border-radius: 12px; padding: 14px; border: 1px solid var(--g4); display: flex; gap: 20px; align-items: center; }
+.price-compare-box .save-amount { font-size: 20px; font-weight: 700; color: var(--red); }
+
+/* ===== ORDER STEPS ===== */
+.order-steps { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 20px 0; margin-bottom: 24px; }
+.step { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.step-circle { width: 40px; height: 40px; border-radius: 50%; background: var(--g5); color: var(--text3); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 2px solid #d4e6d4; transition: var(--transition); }
+.step.active .step-circle { background: var(--g1); color: white; border-color: var(--g1); }
+.step.done .step-circle { background: var(--g4); color: white; border-color: var(--g3); }
+.step-label { font-size: 11px; color: var(--text3); text-align: center; max-width: 60px; }
+.step.active .step-label { color: var(--g1); font-weight: 600; }
+.step-line { flex: 1; height: 2px; background: var(--g5); max-width: 60px; }
+.step-line.done { background: var(--g3); }
+
+/* ===== FOOTER ===== */
+footer { background: linear-gradient(135deg, #0f2d1a, #1a5c38); color: rgba(255,255,255,0.8); padding: 48px 28px 28px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto 32px; }
+.footer-logo-text { font-family: 'Noto Serif Bengali', serif; font-size: 22px; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+.footer-desc { font-size: 14px; line-height: 1.7; max-width: 280px; }
+.footer-heading { font-family: 'Noto Serif Bengali', serif; font-size: 16px; color: var(--gold2); font-weight: 600; margin-bottom: 14px; }
+.footer-list { list-style: none; }
+.footer-list li { font-size: 14px; margin-bottom: 8px; opacity: 0.8; cursor: pointer; }
+.footer-list li:hover { opacity: 1; color: var(--gold2); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 13px; opacity: 0.6; }
+
+/* ===== ORDER CONFIRMATION ===== */
+.order-success { text-align: center; padding: 40px 20px; }
+.success-circle { width: 80px; height: 80px; background: linear-gradient(135deg, var(--g3), var(--g4)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 16px; animation: bounceIn 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+@keyframes bounceIn { from { transform:scale(0); } to { transform:scale(1); } }
+.success-order-num { font-family: 'Noto Serif Bengali', serif; font-size: 22px; font-weight: 700; color: var(--g1); margin-bottom: 8px; }
+
+/* ===== PRODUCT DETAIL MODAL ===== */
+.product-detail-modal { max-width: 700px; }
+.product-imgs-row { display: flex; gap: 10px; }
+.product-main-img { flex: 1; height: 280px; border-radius: 16px; overflow: hidden; background: var(--g5); display: flex; align-items: center; justify-content: center; font-size: 80px; }
+.product-main-img img { width: 100%; height: 100%; object-fit: cover; }
+.product-thumb-col { display: flex; flex-direction: column; gap: 8px; }
+.product-thumb { width: 70px; height: 70px; border-radius: 10px; overflow: hidden; border: 2px solid transparent; cursor: pointer; background: var(--g5); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+.product-thumb.active { border-color: var(--g2); }
+.product-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ===== MARKET COMPARE ===== */
+.market-compare { background: linear-gradient(135deg, #fff8e1, #fff3cd); border-radius: 14px; padding: 16px; margin: 14px 0; border: 1px solid var(--gold); }
+.compare-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.compare-label { font-size: 13px; color: var(--brown); }
+.compare-val { font-size: 16px; font-weight: 700; }
+.save-highlight { background: var(--red); color: white; border-radius: 20px; padding: 4px 12px; font-size: 13px; font-weight: 700; }
+.progress-bar { height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; margin-top: 6px; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--g3), var(--g4)); border-radius: 4px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  nav { padding: 0 16px; }
+  .section { padding: 48px 16px; }
+  #cart-sidebar { width: 100%; max-width: 100%; right: -100%; }
+}
+@media (max-width: 480px) {
+  .payment-options { grid-template-columns: 1fr 1fr; }
+  .dash-tabs { overflow-x: auto; }
+  .dash-tab { white-space: nowrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div id="toast-container"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-icon">🌿</div>
+    <div class="nav-logo-text">
+      <div class="nav-logo-title">কৃষি মিত্র</div>
+      <div class="nav-logo-sub">গ্রামীণ পণ্যের সেরা বাজার</div>
+    </div>
+  </div>
+  <div class="nav-right" id="nav-right">
+    <button class="nav-btn nav-btn-ghost" onclick="showPage('home')">হোম</button>
+    <button class="nav-btn nav-btn-ghost" onclick="showPage('products')">পণ্যসমূহ</button>
+    <div class="cart-fab" onclick="openCart()" id="cart-icon" style="display:none;">
+      🛒<span class="cart-badge" id="cart-count">0</span>
+    </div>
+    <div id="nav-guest">
+      <button class="nav-btn nav-btn-ghost" onclick="openLoginModal('buyer')">ক্রেতা লগইন</button>
+      <button class="nav-btn nav-btn-gold" onclick="openLoginModal('farmer')">কৃষক লগইন</button>
+    </div>
+    <div id="nav-user" style="display:none;">
+      <div class="user-avatar" id="user-avatar" onclick="handleUserClick()">?</div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active page-fade" id="page-home">
+  <!-- HERO -->
+  <div id="hero-section">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-leaves"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">🌾 বাংলাদেশের সেরা কৃষি মার্কেটপ্লেস</div>
+        <h1 class="hero-title">সরাসরি কৃষকের কাছ থেকে<br><span>সেরা পণ্য</span> পান</h1>
+        <p class="hero-desc">মধ্যস্থতাকারী ছাড়াই সরাসরি কৃষকের কাছ থেকে তাজা ও খাঁটি পণ্য কিনুন। বাজার মূল্যের চেয়ে সাশ্রয়ী দামে শুকনো ফল, গ্রামীণ পণ্য, মৌসুমী ফল ও শস্য পান।</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="hero-stat-num">৫০০+</div><div class="hero-stat-label">কৃষক</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">১০০০+</div><div class="hero-stat-label">পণ্য</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">৩০%</div><div class="hero-stat-label">সাশ্রয়</div></div>
+        </div>
+        <div class="hero-btns">
+          <button class="btn-hero-primary" onclick="showPage('products')">পণ্য দেখুন 🛍️</button>
+          <button class="btn-hero-outline" onclick="openLoginModal('farmer')">কৃষক হিসেবে যোগ দিন 🌱</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card"><div class="hero-card-icon">🥜</div><div class="hero-card-text"><h4>শুকনো ফল</h4><p>খাঁটি কাজু, আখরোট, কিসমিস</p></div></div>
+        <div class="hero-card"><div class="hero-card-icon">🌾</div><div class="hero-card-text"><h4>গ্রামীণ পণ্য</h4><p>দেশীয় মধু, খাঁটি ঘি, গুড়</p></div></div>
+        <div class="hero-card"><div class="hero-card-icon">🍎</div><div class="hero-card-text"><h4>মৌসুমী ফল</h4><p>আম, লিচু, কাঁঠাল, পেয়ারা</p></div></div>
+        <div class="hero-card"><div class="hero-card-icon">🌽</div><div class="hero-card-text"><h4>শস্য ও দানা</h4><p>চাল, ডাল, গম, ভুট্টা</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY SECTION -->
+  <div class="why-bg">
+    <div class="section-header" style="color:white; padding-top:0;">
+      <div class="section-label" style="background:rgba(255,255,255,0.15);color:var(--gold2)">কেন কৃষি মিত্র?</div>
+      <h2 class="section-title" style="color:var(--gold)">আমাদের বিশেষত্ব</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">🚜</div><h3 class="why-title">সরাসরি কৃষকের কাছ থেকে</h3><p class="why-desc">কোনো মধ্যস্থতাকারী নেই, তাই পান সেরা দামে সেরা পণ্য</p></div>
+      <div class="why-card"><div class="why-icon">✅</div><h3 class="why-title">মানের নিশ্চয়তা</h3><p class="why-desc">প্রতিটি পণ্য আমাদের টিম কর্তৃক যাচাই করা</p></div>
+      <div class="why-card"><div class="why-icon">🚚</div><h3 class="why-title">দ্রুত ডেলিভারি</h3><p class="why-desc">সারাদেশে ২-৫ দিনের মধ্যে ডেলিভারি</p></div>
+      <div class="why-card"><div class="why-icon">💳</div><h3 class="why-title">সহজ পেমেন্ট</h3><p class="why-desc">বিকাশ, নগদ, ক্যাশ অন ডেলিভারি সব আছে</p></div>
+    </div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <div style="background:var(--cream)">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-label">বিশেষ পণ্য</div>
+        <h2 class="section-title">জনপ্রিয় পণ্যসমূহ</h2>
+        <p class="section-desc">বাজার মূল্যের চেয়ে কম দামে সেরা পণ্য</p>
+      </div>
+      <div id="featured-products">
+        <div class="loading-spinner"><div class="spinner"></div></div>
+      </div>
+      <div style="text-align:center; margin-top:32px;">
+        <button class="btn-hero-primary" onclick="showPage('products')" style="display:inline-flex;">সব পণ্য দেখুন →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-text">🌿 কৃষি মিত্র</div>
+        <p class="footer-desc">বাংলাদেশের কৃষকদের সাথে সরাসরি সংযোগ স্থাপন করে খাঁটি ও সাশ্রয়ী পণ্য সারাদেশে পৌঁছে দেওয়াই আমাদের লক্ষ্য।</p>
+      </div>
+      <div>
+        <p class="footer-heading">পেমেন্ট পদ্ধতি</p>
+        <ul class="footer-list"><li>💚 বিকাশ</li><li>🔴 নগদ</li><li>💙 নিউ</li><li>🏦 ব্যাংক ট্রান্সফার</li><li>💵 ক্যাশ অন ডেলিভারি</li></ul>
+      </div>
+      <div>
+        <p class="footer-heading">যোগাযোগ</p>
+        <ul class="footer-list"><li>📞 01700-000000</li><li>📧 info@krishimitra.com</li><li>📍 ঢাকা, বাংলাদেশ</li></ul>
+        <p class="footer-heading" style="margin-top:16px">এডমিন প্যানেল</p>
+        <ul class="footer-list"><li onclick="openLoginModal('admin')" style="cursor:pointer; color:var(--gold2)">🔐 এডমিন লগইন</li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© ২০২৪ কৃষি মিত্র। সর্বস্বত্ব সংরক্ষিত।</div>
+  </footer>
+</div>
+
+<!-- ===== PRODUCTS PAGE ===== -->
+<div class="page page-fade" id="page-products">
+  <div style="background:linear-gradient(135deg,var(--g1),var(--g2)); padding:40px 28px 32px; text-align:center;">
+    <h2 style="font-family:'Noto Serif Bengali',serif; font-size:30px; color:var(--gold); font-weight:700; margin-bottom:8px;">সকল পণ্যসমূহ</h2>
+    <p style="color:rgba(255,255,255,0.75); font-size:16px;">সরাসরি কৃষকের কাছ থেকে সেরা মানের পণ্য</p>
+  </div>
+  <div class="section" style="padding-top:32px;">
+    <div class="search-bar"><input type="text" id="product-search" placeholder="পণ্য খুঁজুন..." oninput="searchProducts()"><button onclick="searchProducts()">🔍</button></div>
+    <div class="categories-grid" id="category-filters">
+      <div class="cat-chip active" onclick="filterCategory(0,this)"><span class="cat-icon">🛒</span> সব পণ্য</div>
+    </div>
+    <div id="products-grid-container">
+      <div class="loading-spinner"><div class="spinner"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FARMER DASHBOARD ===== -->
+<div class="page page-fade" id="page-farmer">
+  <div class="dash-header">
+    <h2>কৃষক ড্যাশবোর্ড</h2>
+    <p style="margin-top:8px; opacity:0.8; font-size:15px;" id="farmer-welcome">স্বাগতম!</p>
+  </div>
+  <div class="dash-tabs">
+    <div class="dash-tab active" onclick="farmerTab('my-products',this)">📦 আমার পণ্য</div>
+    <div class="dash-tab" onclick="farmerTab('add-product',this)">➕ পণ্য যোগ করুন</div>
+    <div class="dash-tab" onclick="farmerTab('my-profile',this)">👤 প্রোফাইল</div>
+  </div>
+  <div class="dash-content">
+    <div id="farmer-my-products">
+      <div class="loading-spinner"><div class="spinner"></div></div>
+    </div>
+    <div id="farmer-add-product" style="display:none;">
+      <div class="add-product-section">
+        <h3 style="font-family:'Noto Serif Bengali',serif; font-size:22px; color:var(--g1); margin-bottom:24px;">নতুন পণ্য যোগ করুন</h3>
+        <form id="add-product-form">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">পণ্যের নাম (বাংলা) *</label><input type="text" class="form-control" name="name_bn" placeholder="যেমন: খাঁটি কাজুবাদাম" required></div>
+            <div class="form-group"><label class="form-label">ক্যাটাগরি *</label><select class="form-control" name="category_id" id="product-category-select" required></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">আমাদের মূল্য (টাকা) *</label><input type="number" class="form-control" name="our_price" id="our-price-input" placeholder="0.00" step="0.01" oninput="updatePriceCompare()" required></div>
+            <div class="form-group"><label class="form-label">বাজার মূল্য (টাকা) *</label><input type="number" class="form-control" name="market_price" id="market-price-input" placeholder="0.00" step="0.01" oninput="updatePriceCompare()" required></div>
+          </div>
+          <div id="price-compare-preview" style="display:none;">
+            <div class="price-compare-box">
+              <div>
+                <div style="font-size:12px;color:var(--brown);font-weight:600;">বাজার মূল্য</div>
+                <div style="font-size:20px;font-weight:700;text-decoration:line-through;color:var(--gray);" id="pcp-market">৳০</div>
+              </div>
+              <div style="font-size:24px;">→</div>
+              <div>
+                <div style="font-size:12px;color:var(--g1);font-weight:600;">আমাদের মূল্য</div>
+                <div style="font-size:24px;font-weight:700;color:var(--g1);" id="pcp-our">৳০</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-size:12px;color:var(--brown);">ক্রেতা বাঁচাবে</div>
+                <div class="save-amount" id="pcp-save">৳০</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">পরিমাণ *</label><input type="number" class="form-control" name="available_quantity" placeholder="0" step="0.1" required></div>
+            <div class="form-group"><label class="form-label">একক</label><select class="form-control" name="unit"><option value="কেজি">কেজি</option><option value="গ্রাম">গ্রাম</option><option value="লিটার">লিটার</option><option value="পিস">পিস</option><option value="ডজন">ডজন</option><option value="মণ">মণ</option></select></div>
+          </div>
+          <div class="form-group"><label class="form-label">বিবরণ</label><textarea class="form-control" name="description" rows="3" placeholder="পণ্যের বিস্তারিত বিবরণ লিখুন..."></textarea></div>
+          <div class="form-group">
+            <label class="form-label">পণ্যের ছবি (সর্বোচ্চ ৩টি)</label>
+            <div class="upload-zone" onclick="document.getElementById('product-images').click()">
+              <div style="font-size:32px; margin-bottom:8px;">📷</div>
+              <p style="color:var(--text2); font-size:14px;">ক্লিক করে ছবি আপলোড করুন</p>
+              <p style="color:var(--text3); font-size:12px;">JPG, PNG, WEBP (সর্বোচ্চ ৫MB)</p>
+              <input type="file" id="product-images" name="images[]" multiple accept="image/*" onchange="previewImages(this)">
+            </div>
+            <div class="upload-preview" id="image-preview"></div>
+          </div>
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <input type="checkbox" name="is_organic" value="1" style="width:18px;height:18px;accent-color:var(--g2);">
+              <span class="form-label" style="margin:0;">🌱 অর্গানিক পণ্য</span>
+            </label>
+          </div>
+          <button type="button" onclick="submitAddProduct()" class="btn-submit">পণ্য যোগ করুন</button>
+        </form>
+      </div>
+    </div>
+    <div id="farmer-my-profile" style="display:none;">
+      <div style="background:white;border-radius:var(--radius2);padding:32px;box-shadow:var(--shadow);max-width:500px;">
+        <h3 style="font-family:'Noto Serif Bengali',serif;font-size:20px;color:var(--g1);margin-bottom:20px;">প্রোফাইল তথ্য</h3>
+        <div id="farmer-profile-info"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ADMIN PAGE ===== -->
+<div class="page page-fade" id="page-admin">
+  <div class="admin-header">
+    <h2>🔐 এডমিন প্যানেল</h2>
+    <p style="color:rgba(255,255,255,0.7);margin-top:4px;">কৃষি মিত্র ম্যানেজমেন্ট সিস্টেম</p>
+  </div>
+  <div class="dash-tabs" style="background:#1a1a2e; border-color:#2a2a4e;">
+    <div class="dash-tab" onclick="adminTab('dashboard',this)" style="color:rgba(255,255,255,0.7);" id="admin-tab-0">📊 ড্যাশবোর্ড</div>
+    <div class="dash-tab" onclick="adminTab('products',this)" style="color:rgba(255,255,255,0.7);">📦 পণ্য অনুমোদন</div>
+    <div class="dash-tab" onclick="adminTab('orders',this)" style="color:rgba(255,255,255,0.7);">📋 অর্ডার</div>
+    <div class="dash-tab" onclick="adminTab('farmers',this)" style="color:rgba(255,255,255,0.7);">🌾 কৃষক</div>
+    <div class="dash-tab" onclick="adminTab('settings',this)" style="color:rgba(255,255,255,0.7);">⚙️ সেটিংস</div>
+  </div>
+  <div class="dash-content">
+    <div id="admin-dashboard-tab">
+      <div class="loading-spinner"><div class="spinner"></div></div>
+    </div>
+    <div id="admin-products-tab" style="display:none;"></div>
+    <div id="admin-orders-tab" style="display:none;"></div>
+    <div id="admin-farmers-tab" style="display:none;"></div>
+    <div id="admin-settings-tab" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ===== BUYER ORDERS PAGE ===== -->
+<div class="page page-fade" id="page-orders">
+  <div style="background:linear-gradient(135deg,var(--g1),var(--g2));padding:40px 28px;text-align:center;">
+    <h2 style="font-family:'Noto Serif Bengali',serif;font-size:28px;color:var(--gold);font-weight:700;">আমার অর্ডার</h2>
+  </div>
+  <div class="section">
+    <div id="buyer-orders-list"><div class="loading-spinner"><div class="spinner"></div></div></div>
+  </div>
+</div>
+
+<!-- ===== MODALS ===== -->
+
+<!-- Login/Register Modal -->
+<div class="modal-overlay" id="modal-login">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="login-modal-title">লগইন করুন</span>
+      <button class="modal-close" onclick="closeModal('modal-login')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs" id="auth-tabs">
+        <div class="modal-tab active" onclick="switchAuthTab('login',this)">লগইন</div>
+        <div class="modal-tab" onclick="switchAuthTab('register',this)">নিবন্ধন</div>
+      </div>
+      <!-- Login Form -->
+      <div id="auth-login-form">
+        <div class="form-group"><label class="form-label">ইমেইল</label><input type="email" class="form-control" id="login-email" placeholder="আপনার ইমেইল"></div>
+        <div class="form-group"><label class="form-label">পাসওয়ার্ড</label><input type="password" class="form-control" id="login-password" placeholder="পাসওয়ার্ড"></div>
+        <button class="btn-submit" onclick="doLogin()">লগইন করুন</button>
+      </div>
+      <!-- Register Form -->
+      <div id="auth-register-form" style="display:none;">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">পুরো নাম *</label><input type="text" class="form-control" id="reg-name" placeholder="আপনার নাম"></div>
+          <div class="form-group"><label class="form-label">ফোন *</label><input type="text" class="form-control" id="reg-phone" placeholder="01XXXXXXXXX"></div>
+        </div>
+        <div class="form-group"><label class="form-label">ইমেইল *</label><input type="email" class="form-control" id="reg-email" placeholder="আপনার ইমেইল"></div>
+        <div class="form-group"><label class="form-label">জেলা</label>
+          <select class="form-control" id="reg-district">
+            <option value="">জেলা বেছে নিন</option>
+            <option>ঢাকা</option><option>চট্টগ্রাম</option><option>সিলেট</option><option>রাজশাহী</option>
+            <option>খুলনা</option><option>বরিশাল</option><option>ময়মনসিংহ</option><option>রংপুর</option>
+            <option>কুমিল্লা</option><option>নারায়ণগঞ্জ</option><option>গাজীপুর</option>
+          </select>
+        </div>
+        <div id="farmer-extra-fields" style="display:none;">
+          <div class="form-group"><label class="form-label">জাতীয় পরিচয়পত্র নম্বর</label><input type="text" class="form-control" id="reg-nid" placeholder="NID নম্বর"></div>
+          <div class="form-group"><label class="form-label">ঠিকানা</label><textarea class="form-control" id="reg-address" rows="2" placeholder="বিস্তারিত ঠিকানা"></textarea></div>
+        </div>
+        <div class="form-group"><label class="form-label">পাসওয়ার্ড *</label><input type="password" class="form-control" id="reg-password" placeholder="পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)"></div>
+        <button class="btn-submit" onclick="doRegister()">নিবন্ধন করুন</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product Detail Modal -->
+<div class="modal-overlay" id="modal-product">
+  <div class="modal product-detail-modal">
+    <div class="modal-header">
+      <span class="modal-title" id="product-modal-title">পণ্যের বিবরণ</span>
+      <button class="modal-close" onclick="closeModal('modal-product')">✕</button>
+    </div>
+    <div class="modal-body" id="product-modal-body">
+      <div class="loading-spinner"><div class="spinner"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal-overlay" id="modal-checkout">
+  <div class="modal checkout-modal">
+    <div class="modal-header">
+      <span class="modal-title">অর্ডার করুন</span>
+      <button class="modal-close" onclick="closeModal('modal-checkout')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="order-steps">
+        <div class="step active" id="step1"><div class="step-circle">১</div><div class="step-label">ঠিকানা</div></div>
+        <div class="step-line"></div>
+        <div class="step" id="step2"><div class="step-circle">২</div><div class="step-label">পেমেন্ট</div></div>
+        <div class="step-line" id="step-line2"></div>
+        <div class="step" id="step3"><div class="step-circle">৩</div><div class="step-label">নিশ্চিত</div></div>
+      </div>
+      <!-- Step 1: Address -->
+      <div id="checkout-step1">
+        <div class="form-group"><label class="form-label">পুরো ঠিকানা *</label><textarea class="form-control" id="co-address" rows="3" placeholder="বাড়ি নম্বর, রাস্তা, এলাকা..."></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">জেলা *</label>
+            <select class="form-control" id="co-district" onchange="updateDeliveryCharge()">
+              <option value="">জেলা বেছে নিন</option>
+              <option>ঢাকা</option><option>চট্টগ্রাম</option><option>সিলেট</option><option>রাজশাহী</option>
+              <option>খুলনা</option><option>বরিশাল</option><option>ময়মনসিংহ</option><option>রংপুর</option>
+              <option>কুমিল্লা</option><option>নারায়ণগঞ্জ</option><option>গাজীপুর</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">উপজেলা</label><input type="text" class="form-control" id="co-upazila" placeholder="উপজেলা"></div>
+        </div>
+        <div style="background:var(--g5);border-radius:12px;padding:14px;margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:14px;"><span>পণ্যের মোট</span><span id="co-subtotal">৳০</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:14px;"><span>ডেলিভারি চার্জ</span><span id="co-delivery">৳৮০</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:18px;font-weight:700;color:var(--g1);border-top:1px solid #c8e6c9;padding-top:8px;margin-top:4px;"><span>সর্বমোট</span><span id="co-total">৳০</span></div>
+        </div>
+        <div class="form-group"><label class="form-label">বিশেষ নোট (ঐচ্ছিক)</label><input type="text" class="form-control" id="co-notes" placeholder="কোনো বিশেষ নির্দেশনা..."></div>
+        <button class="btn-submit" onclick="checkoutStep2()">পরবর্তী → পেমেন্ট</button>
+      </div>
+      <!-- Step 2: Payment -->
+      <div id="checkout-step2" style="display:none;">
+        <p style="font-size:14px;color:var(--text2);margin-bottom:14px;font-weight:600;">পেমেন্ট পদ্ধতি বেছে নিন</p>
+        <div class="payment-options" id="payment-options">
+          <div class="pay-opt" onclick="selectPayment('bkash',this)"><span class="pay-icon">💚</span>বিকাশ</div>
+          <div class="pay-opt" onclick="selectPayment('nagad',this)"><span class="pay-icon">🔴</span>নগদ</div>
+          <div class="pay-opt" onclick="selectPayment('nid',this)"><span class="pay-icon">💙</span>নিউ</div>
+          <div class="pay-opt" onclick="selectPayment('bank',this)"><span class="pay-icon">🏦</span>ব্যাংক</div>
+          <div class="pay-opt" onclick="selectPayment('cod',this)"><span class="pay-icon">💵</span>ক্যাশ অন ডেলিভারি</div>
+        </div>
+        <div id="payment-details" style="display:none; margin-top:14px;"></div>
+        <button class="btn-submit" onclick="placeOrder()">অর্ডার নিশ্চিত করুন ✅</button>
+        <button onclick="checkoutStep1()" style="width:100%;padding:12px;margin-top:8px;background:transparent;border:1.5px solid #d0d0d0;border-radius:12px;font-size:15px;color:var(--text3);">← আগের ধাপ</button>
+      </div>
+      <!-- Step 3: Success -->
+      <div id="checkout-step3" style="display:none;">
+        <div class="order-success">
+          <div class="success-circle">✅</div>
+          <h3 class="success-order-num" id="success-order-num"></h3>
+          <p style="color:var(--text2);margin-bottom:24px;">আপনার অর্ডার সফলভাবে প্রদান করা হয়েছে। শীঘ্রই আমরা আপনার সাথে যোগাযোগ করব।</p>
+          <div style="background:var(--g5);border-radius:14px;padding:16px;margin-bottom:20px;text-align:left;">
+            <p style="font-size:13px;color:var(--text2);margin-bottom:8px;font-weight:600;">📱 পেমেন্ট তথ্য</p>
+            <p id="success-payment-info" style="font-size:14px;color:var(--g1);"></p>
+          </div>
+          <button class="btn-submit" onclick="closeModal('modal-checkout');showPage('orders')">আমার অর্ডার দেখুন</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div id="cart-sidebar">
+  <div class="cart-header">
+    <h3>🛒 আমার কার্ট</h3>
+    <button class="modal-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cart-items-list"></div>
+  <div class="cart-footer">
+    <div class="cart-total-row"><span>পণ্যের মোট</span><span id="cart-subtotal">৳০</span></div>
+    <div class="cart-total-row"><span>ডেলিভারি চার্জ</span><span>৳৮০ (প্রায়)</span></div>
+    <div class="cart-total-row grand"><span>সর্বমোট</span><span id="cart-grand-total">৳০</span></div>
+    <button class="btn-checkout" onclick="openCheckout()">অর্ডার করুন →</button>
+  </div>
+</div>
+
+<script>
+// ============================================
+// STATE
+// ============================================
+let currentUser = null;
+let userType = null; // buyer, farmer, admin
+let cart = JSON.parse(localStorage.getItem('km_cart') || '[]');
+let categories = [];
+let allProducts = [];
+let currentPage = 'home';
+let selectedPayment = '';
+let currentLoginType = 'buyer';
+let deliveryCharges = {};
+
+const API = 'api.php';
+
+// ============================================
+// PAGE NAVIGATION
+// ============================================
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const pg = document.getElementById('page-' + page);
+  if (pg) { pg.classList.add('active'); currentPage = page; window.scrollTo(0,0); }
+  if (page === 'products') loadProducts();
+  if (page === 'orders' && userType === 'buyer') loadBuyerOrders();
+  if (page === 'home') loadFeaturedProducts();
+}
+
+// ============================================
+// API CALL
+// ============================================
+async function api(action, data = {}, method = 'GET') {
+  try {
+    let url = API + '?action=' + action;
+    let opts = { method };
+    if (method === 'POST') {
+      if (data instanceof FormData) { data.append('action', action); url = API; opts.body = data; }
+      else { const fd = new FormData(); fd.append('action', action); Object.entries(data).forEach(([k,v]) => fd.append(k, v)); opts.body = fd; url = API; }
+    } else {
+      Object.entries(data).forEach(([k,v]) => url += '&' + k + '=' + encodeURIComponent(v));
+    }
+    const res = await fetch(url, opts);
+    return await res.json();
+  } catch (e) { return { success: false, message: 'সার্ভার সংযোগ ব্যর্থ হয়েছে' }; }
+}
+
+// ============================================
+// TOAST
+// ============================================
+function toast(msg, type = 'success') {
+  const icons = { success: '✅', error: '❌', warning: '⚠️' };
+  const el = document.createElement('div');
+  el.className = `toast ${type !== 'success' ? type : ''}`;
+  el.innerHTML = `<span class="toast-icon">${icons[type]||'ℹ️'}</span><span class="toast-msg">${msg}</span>`;
+  document.getElementById('toast-container').appendChild(el);
+  setTimeout(() => { el.style.animation = 'toastOut 0.3s ease forwards'; setTimeout(() => el.remove(), 300); }, 3500);
+}
+
+// ============================================
+// MODAL
+// ============================================
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// ============================================
+// AUTH
+// ============================================
+function openLoginModal(type) {
+  currentLoginType = type;
+  const titles = { buyer: 'ক্রেতা লগইন / নিবন্ধন', farmer: 'কৃষক লগইন / নিবন্ধন', admin: 'এডমিন লগইন' };
+  document.getElementById('login-modal-title').textContent = titles[type];
+  document.getElementById('auth-tabs').style.display = type === 'admin' ? 'none' : 'flex';
+  document.getElementById('farmer-extra-fields').style.display = type === 'farmer' ? 'block' : 'none';
+  switchAuthTab('login', document.querySelector('#auth-tabs .modal-tab'));
+  openModal('modal-login');
+}
+
+function switchAuthTab(tab, el) {
+  document.querySelectorAll('#auth-tabs .modal-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  document.getElementById('auth-login-form').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('auth-register-form').style.display = tab === 'register' ? 'block' : 'none';
+}
+
+async function doLogin() {
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  if (!email || !password) { toast('ইমেইল ও পাসওয়ার্ড দিন', 'error'); return; }
+  const res = await api(currentLoginType + '_login', { email, password }, 'POST');
+  if (res.success) {
+    currentUser = res.user; userType = currentLoginType;
+    updateNavForUser();
+    closeModal('modal-login');
+    toast(res.message, 'success');
+    if (userType === 'farmer') showPage('farmer');
+    else if (userType === 'admin') { showPage('admin'); loadAdminDashboard(); }
+  } else toast(res.message, 'error');
+}
+
+async function doRegister() {
+  const data = {
+    name: document.getElementById('reg-name').value,
+    phone: document.getElementById('reg-phone').value,
+    email: document.getElementById('reg-email').value,
+    password: document.getElementById('reg-password').value,
+    district: document.getElementById('reg-district').value,
+  };
+  if (currentLoginType === 'farmer') {
+    data.nid_number = document.getElementById('reg-nid').value;
+    data.address = document.getElementById('reg-address').value;
+  }
+  if (!data.name || !data.phone || !data.email || !data.password) { toast('সব তথ্য পূরণ করুন', 'error'); return; }
+  const res = await api(currentLoginType + '_register', data, 'POST');
+  if (res.success) { toast(res.message, 'success'); switchAuthTab('login', document.querySelector('#auth-tabs .modal-tab')); }
+  else toast(res.message, 'error');
+}
+
+function updateNavForUser() {
+  const guest = document.getElementById('nav-guest');
+  const user = document.getElementById('nav-user');
+  const cartIcon = document.getElementById('cart-icon');
+  if (currentUser) {
+    guest.style.display = 'none'; user.style.display = 'flex';
+    document.getElementById('user-avatar').textContent = currentUser.name[0];
+    if (userType === 'buyer') cartIcon.style.display = 'flex';
+    updateCartCount();
+  } else {
+    guest.style.display = 'flex'; user.style.display = 'none'; cartIcon.style.display = 'none';
+  }
+}
+
+function handleUserClick() {
+  if (!currentUser) return;
+  const menu = confirm(`${currentUser.name} - লগআউট করতে চান?`);
+  if (menu) { doLogout(); }
+}
+
+async function doLogout() {
+  await api('logout', {}, 'POST');
+  currentUser = null; userType = null;
+  updateNavForUser();
+  cart = []; saveCart(); updateCartCount();
+  showPage('home'); toast('লগআউট সফল হয়েছে');
+}
+
+// ============================================
+// CATEGORIES
+// ============================================
+async function loadCategories() {
+  const res = await api('get_categories');
+  if (res.success) {
+    categories = res.categories;
+    // Filter bar
+    const filterEl = document.getElementById('category-filters');
+    if (filterEl) {
+      categories.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'cat-chip';
+        div.innerHTML = `<span class="cat-icon">${c.icon}</span> ${c.name_bn}`;
+        div.onclick = function() { filterCategory(c.id, this); };
+        filterEl.appendChild(div);
+      });
+    }
+    // Add product select
+    const sel = document.getElementById('product-category-select');
+    if (sel) { sel.innerHTML = '<option value="">ক্যাটাগরি বেছে নিন</option>' + categories.map(c => `<option value="${c.id}">${c.icon} ${c.name_bn}</option>`).join(''); }
+  }
+}
+
+// ============================================
+// PRODUCTS
+// ============================================
+let currentCategory = 0;
+
+function filterCategory(catId, el) {
+  currentCategory = catId;
+  document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+  if (el) el.classList.add('active');
+  loadProducts();
+}
+
+function searchProducts() {
+  loadProducts();
+}
+
+async function loadProducts() {
+  const container = document.getElementById('products-grid-container');
+  if (!container) return;
+  container.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+  const search = document.getElementById('product-search')?.value || '';
+  const res = await api('get_products', { category: currentCategory, search });
+  if (!res.success || !res.products.length) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">🌾</div><p>কোনো পণ্য পাওয়া যায়নি</p></div>';
+    return;
+  }
+  allProducts = res.products;
+  container.innerHTML = `<div class="products-grid">${res.products.map(p => productCardHTML(p)).join('')}</div>`;
+}
+
+async function loadFeaturedProducts() {
+  const container = document.getElementById('featured-products');
+  if (!container) return;
+  const res = await api('get_products', { limit: 8 });
+  if (!res.success || !res.products.length) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">🌾</div><p>পণ্য লোড হচ্ছে...</p></div>';
+    return;
+  }
+  const featured = res.products.slice(0,8);
+  container.innerHTML = `<div class="products-grid">${featured.map(p => productCardHTML(p)).join('')}</div>`;
+}
+
+function productCardHTML(p) {
+  const savePct = p.market_price > p.our_price ? Math.round((1 - p.our_price/p.market_price)*100) : 0;
+  const imgHTML = p.image1
+    ? `<img src="${p.image1}" alt="${p.name_bn}" loading="lazy">`
+    : `<div class="product-img-placeholder">${getCatIcon(p.category_id)}</div>`;
+  return `
+  <div class="product-card">
+    <div class="product-img-wrap">
+      ${imgHTML}
+      ${p.is_organic ? '<span class="product-badge organic">🌱 অর্গানিক</span>' : ''}
+      ${savePct > 0 ? `<span class="product-save-badge">${savePct}% সাশ্রয়</span>` : ''}
+    </div>
+    <div class="product-body">
+      <div class="product-category">${p.category_name}</div>
+      <div class="product-name">${p.name_bn}</div>
+      <div class="product-farmer">📍 ${p.farmer_name} · ${p.farmer_district||''}</div>
+      <div class="price-row">
+        <div>
+          <div class="price-our">৳${p.our_price}<span class="product-unit">/${p.unit}</span></div>
+          ${p.market_price > p.our_price ? `<div style="display:flex;gap:8px;align-items:center;margin-top:2px;"><span class="price-market">৳${p.market_price}</span><span class="price-save">↓ ৳${(p.market_price-p.our_price).toFixed(0)} কম</span></div>` : ''}
+        </div>
+      </div>
+      <div class="calc-row">
+        <label>পরিমাণ দিন → মোট দেখুন</label>
+        <div class="calc-row-inner">
+          <input type="number" class="qty-input" value="1" min="0.1" step="0.1" onchange="calcTotal(this, ${p.our_price})" oninput="calcTotal(this, ${p.our_price})">
+          <span style="font-size:13px;color:var(--text3)">${p.unit}</span>
+          <div class="calc-result" id="calc-${p.id}">৳${p.our_price}</div>
+        </div>
+      </div>
+      <button class="btn-order" onclick="addToCart(${JSON.stringify(p).replace(/"/g,'&quot;')}, this)">🛒 কার্টে যোগ করুন</button>
+      <button class="btn-cart" onclick="openProductModal(${p.id})">বিস্তারিত দেখুন</button>
+    </div>
+  </div>`;
+}
+
+function calcTotal(input, price) {
+  const qty = parseFloat(input.value) || 0;
+  const total = qty * price;
+  const card = input.closest('.product-card');
+  const prodId = card.querySelector('.btn-cart').getAttribute('onclick').match(/\d+/)[0];
+  const el = document.getElementById('calc-' + prodId);
+  if (el) el.textContent = '৳' + total.toFixed(2);
+}
+
+function getCatIcon(catId) {
+  const icons = { 1:'🥜', 2:'🌾', 3:'🍎', 4:'🌽', 5:'🌶️', 6:'🥦' };
+  return icons[catId] || '🌿';
+}
+
+// ============================================
+// PRODUCT DETAIL MODAL
+// ============================================
+async function openProductModal(id) {
+  openModal('modal-product');
+  document.getElementById('product-modal-body').innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+  const res = await api('get_product', { id });
+  if (!res.success) { document.getElementById('product-modal-body').innerHTML = '<p style="color:red;padding:20px;">পণ্য পাওয়া যায়নি</p>'; return; }
+  const p = res.product;
+  const savePct = p.market_price > p.our_price ? Math.round((1 - p.our_price/p.market_price)*100) : 0;
+  const imgs = [p.image1, p.image2, p.image3].filter(Boolean);
+  document.getElementById('product-modal-title').textContent = p.name_bn;
+  document.getElementById('product-modal-body').innerHTML = `
+    <div class="product-imgs-row" style="margin-bottom:18px;">
+      <div class="product-main-img" id="main-prod-img">
+        ${imgs.length ? `<img src="${imgs[0]}" id="main-img-el">` : `<span>${getCatIcon(p.category_id)}</span>`}
+      </div>
+      ${imgs.length > 1 ? `<div class="product-thumb-col">${imgs.map((img,i) => `<div class="product-thumb ${i===0?'active':''}" onclick="switchImg('${img}',this)"><img src="${img}"></div>`).join('')}</div>` : ''}
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+      <span style="background:var(--g5);color:var(--g2);font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;">${p.category_name}</span>
+      ${p.is_organic ? '<span style="background:#e8f5e9;color:var(--g1);font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;">🌱 অর্গানিক</span>' : ''}
+    </div>
+    <h3 style="font-family:\'Noto Serif Bengali\',serif;font-size:22px;font-weight:700;margin-bottom:6px;">${p.name_bn}</h3>
+    <p style="font-size:13px;color:var(--text3);margin-bottom:14px;">🌾 ${p.farmer_name} · 📍 ${p.district||''}</p>
+    <div class="market-compare">
+      <div class="compare-row"><span class="compare-label">বাজার মূল্য</span><span class="compare-val" style="text-decoration:line-through;color:var(--gray);">৳${p.market_price}/${p.unit}</span></div>
+      <div class="compare-row"><span class="compare-label" style="color:var(--g1);font-weight:700;">আমাদের মূল্য</span><span class="compare-val" style="color:var(--g1);">৳${p.our_price}/${p.unit}</span></div>
+      ${savePct > 0 ? `<div class="compare-row"><span class="compare-label">আপনি বাঁচাচ্ছেন</span><span class="save-highlight">${savePct}% সাশ্রয়!</span></div><div class="progress-bar"><div class="progress-fill" style="width:${savePct}%"></div></div>` : ''}
+    </div>
+    ${p.description ? `<p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:16px;">${p.description}</p>` : ''}
+    <div class="calc-row" style="margin-bottom:16px;">
+      <label>পরিমাণ বেছে নিন</label>
+      <div class="calc-row-inner">
+        <input type="number" class="qty-input" id="modal-qty-${p.id}" value="1" min="0.1" step="0.1" oninput="calcModalTotal(${p.our_price}, ${p.id})">
+        <span style="font-size:14px;color:var(--text3)">${p.unit}</span>
+        <div style="flex:1;text-align:right;"><span style="font-size:22px;font-weight:700;color:var(--g1);" id="modal-calc-${p.id}">৳${p.our_price}</span></div>
+      </div>
+    </div>
+    <button class="btn-order" style="margin-bottom:8px;" onclick="addToCartFromModal(${JSON.stringify(p).replace(/"/g,'&quot;')})">🛒 কার্টে যোগ করুন</button>
+    <p style="font-size:13px;color:var(--text3);margin-top:10px;">📦 উপলব্ধ: ${p.available_quantity} ${p.unit}</p>
+  `;
+}
+
+function switchImg(src, el) {
+  document.getElementById('main-img-el').src = src;
+  document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function calcModalTotal(price, id) {
+  const qty = parseFloat(document.getElementById('modal-qty-'+id).value) || 0;
+  document.getElementById('modal-calc-'+id).textContent = '৳' + (qty * price).toFixed(2);
+}
+
+function addToCartFromModal(product) {
+  const qty = parseFloat(document.getElementById('modal-qty-'+product.id).value) || 1;
+  addToCart(product, null, qty);
+}
+
+// ============================================
+// CART
+// ============================================
+function addToCart(product, btn, customQty) {
+  if (!currentUser || userType !== 'buyer') { toast('কার্টে যোগ করতে ক্রেতা হিসেবে লগইন করুন', 'warning'); openLoginModal('buyer'); return; }
+  const qty = customQty || 1;
+  const idx = cart.findIndex(c => c.id === product.id);
+  if (idx > -1) cart[idx].qty += qty;
+  else cart.push({ id: product.id, name: product.name_bn, price: product.our_price, unit: product.unit, image: product.image1, qty });
+  saveCart(); updateCartCount();
+  toast(`${product.name_bn} কার্টে যোগ হয়েছে! 🛒`);
+}
+
+function saveCart() { localStorage.setItem('km_cart', JSON.stringify(cart)); }
+function updateCartCount() {
+  const total = cart.reduce((a,c) => a + c.qty, 0);
+  document.getElementById('cart-count').textContent = Math.ceil(total);
+}
+
+function openCart() {
+  document.getElementById('cart-sidebar').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('open');
+  renderCart();
+}
+
+function closeCart() {
+  document.getElementById('cart-sidebar').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+}
+
+function renderCart() {
+  const list = document.getElementById('cart-items-list');
+  if (!cart.length) { list.innerHTML = '<div class="empty-state"><div class="empty-icon">🛒</div><p>কার্ট খালি</p></div>'; updateCartTotals(); return; }
+  list.innerHTML = cart.map((item, i) => `
+    <div class="cart-item">
+      <div class="cart-item-img">${item.image ? `<img src="${item.image}">` : getCatIcon(item.category_id||1)}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">৳${(item.price * item.qty).toFixed(2)}</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeCartQty(${i}, -1)">−</button>
+          <span style="font-weight:600;min-width:30px;text-align:center;">${item.qty}</span>
+          <button class="qty-btn" onclick="changeCartQty(${i}, 1)">+</button>
+          <span style="font-size:12px;color:var(--text3)">${item.unit}</span>
+        </div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart(${i})">🗑️</button>
+    </div>`).join('');
+  updateCartTotals();
+}
+
+function changeCartQty(idx, delta) {
+  cart[idx].qty = Math.max(0.1, cart[idx].qty + delta);
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  saveCart(); updateCartCount(); renderCart();
+}
+
+function removeFromCart(idx) { cart.splice(idx, 1); saveCart(); updateCartCount(); renderCart(); }
+
+function updateCartTotals() {
+  const subtotal = cart.reduce((a,c) => a + c.price * c.qty, 0);
+  document.getElementById('cart-subtotal').textContent = '৳' + subtotal.toFixed(2);
+  document.getElementById('cart-grand-total').textContent = '৳' + (subtotal + 80).toFixed(2);
+}
+
+// ============================================
+// CHECKOUT
+// ============================================
+function openCheckout() {
+  if (!cart.length) { toast('কার্ট খালি', 'error'); return; }
+  closeCart();
+  resetCheckout();
+  updateCheckoutTotals();
+  openModal('modal-checkout');
+}
+
+function resetCheckout() {
+  document.getElementById('checkout-step1').style.display = 'block';
+  document.getElementById('checkout-step2').style.display = 'none';
+  document.getElementById('checkout-step3').style.display = 'none';
+  ['step1','step2','step3'].forEach(s => { document.getElementById(s).classList.remove('active','done'); });
+  document.getElementById('step1').classList.add('active');
+}
+
+function updateCheckoutTotals(deliveryCharge = 80) {
+  const subtotal = cart.reduce((a,c) => a + c.price * c.qty, 0);
+  document.getElementById('co-subtotal').textContent = '৳' + subtotal.toFixed(2);
+  document.getElementById('co-delivery').textContent = '৳' + deliveryCharge;
+  document.getElementById('co-total').textContent = '৳' + (subtotal + deliveryCharge).toFixed(2);
+}
+
+async function updateDeliveryCharge() {
+  const district = document.getElementById('co-district').value;
+  if (!district) return;
+  if (deliveryCharges[district]) { updateCheckoutTotals(deliveryCharges[district]); return; }
+  const res = await api('get_delivery_charges');
+  if (res.success) { res.charges.forEach(c => deliveryCharges[c.district] = c.charge); }
+  updateCheckoutTotals(deliveryCharges[district] || 80);
+}
+
+function checkoutStep2() {
+  const address = document.getElementById('co-address').value;
+  const district = document.getElementById('co-district').value;
+  if (!address || !district) { toast('ঠিকানা ও জেলা দিন', 'error'); return; }
+  document.getElementById('checkout-step1').style.display = 'none';
+  document.getElementById('checkout-step2').style.display = 'block';
+  document.getElementById('step1').classList.remove('active'); document.getElementById('step1').classList.add('done');
+  document.getElementById('step2').classList.add('active');
+  document.getElementById('step-line2').classList.add('done');
+}
+
+function checkoutStep1() {
+  document.getElementById('checkout-step1').style.display = 'block';
+  document.getElementById('checkout-step2').style.display = 'none';
+  document.getElementById('step1').classList.remove('done'); document.getElementById('step1').classList.add('active');
+  document.getElementById('step2').classList.remove('active');
+  document.getElementById('step-line2').classList.remove('done');
+}
+
+function selectPayment(method, el) {
+  selectedPayment = method;
+  document.querySelectorAll('.pay-opt').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+  const detailEl = document.getElementById('payment-details');
+  const paymentNos = { bkash: '💚 বিকাশ: 01XXXXXXXXX', nagad: '🔴 নগদ: 01XXXXXXXXX', nid: '💙 নিউ: 01XXXXXXXXX', bank: '🏦 ব্যাংক: ডাচ বাংলা ব্যাংক\nঅ্যাকাউন্ট: 1234567890' };
+  if (method === 'cod') {
+    detailEl.style.display = 'block';
+    detailEl.innerHTML = `<div style="background:#e8f5e9;border-radius:12px;padding:14px;border:1px solid var(--g4);font-size:14px;color:var(--g1);">💵 ডেলিভারির সময় নগদ অর্থ পরিশোধ করুন</div>`;
+  } else if (paymentNos[method]) {
+    detailEl.style.display = 'block';
+    detailEl.innerHTML = `
+      <div style="background:#f0f7ff;border-radius:12px;padding:14px;border:1px solid #b0d4f7;margin-bottom:10px;">
+        <p style="font-size:13px;color:#0c5460;font-weight:600;">পেমেন্ট পাঠান:</p>
+        <p style="font-size:15px;font-weight:700;color:#0c5460;white-space:pre-line;">${paymentNos[method]}</p>
+      </div>
+      <div class="form-group"><label class="form-label">ট্রানজেকশন আইডি</label><input type="text" class="form-control" id="pay-txn" placeholder="ট্রানজেকশন নম্বর দিন"></div>`;
+  } else detailEl.style.display = 'none';
+}
+
+async function placeOrder() {
+  if (!selectedPayment) { toast('পেমেন্ট পদ্ধতি বেছে নিন', 'error'); return; }
+  const txnEl = document.getElementById('pay-txn');
+  const data = {
+    items: JSON.stringify(cart.map(c => ({ id: c.id, qty: c.qty }))),
+    payment_method: selectedPayment,
+    payment_number: txnEl ? txnEl.value : '',
+    delivery_address: document.getElementById('co-address').value,
+    delivery_district: document.getElementById('co-district').value,
+    delivery_upazila: document.getElementById('co-upazila').value || '',
+    notes: document.getElementById('co-notes').value || ''
+  };
+  const res = await api('place_order', data, 'POST');
+  if (res.success) {
+    cart = []; saveCart(); updateCartCount();
+    document.getElementById('checkout-step2').style.display = 'none';
+    document.getElementById('checkout-step3').style.display = 'block';
+    document.getElementById('step2').classList.remove('active'); document.getElementById('step2').classList.add('done');
+    document.getElementById('step3').classList.add('active');
+    document.getElementById('success-order-num').textContent = 'অর্ডার নম্বর: ' + res.order_number;
+    const payInfo = { bkash:'💚 বিকাশে পেমেন্ট: 01XXXXXXXXX নম্বরে পাঠান', nagad:'🔴 নগদে পেমেন্ট: 01XXXXXXXXX নম্বরে পাঠান', nid:'💙 নিউতে পেমেন্ট: 01XXXXXXXXX নম্বরে পাঠান', bank:'🏦 ব্যাংকে পাঠান: A/C 1234567890', cod:'💵 ডেলিভারির সময় ক্যাশ দিন' };
+    document.getElementById('success-payment-info').textContent = payInfo[selectedPayment] || '';
+  } else toast(res.message, 'error');
+}
+
+// ============================================
+// BUYER ORDERS
+// ============================================
+async function loadBuyerOrders() {
+  const container = document.getElementById('buyer-orders-list');
+  container.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+  const res = await api('my_orders');
+  if (!res.success || !res.orders.length) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div><p>কোনো অর্ডার নেই</p></div>';
+    return;
+  }
+  const statusBadge = { pending:'badge-pending', confirmed:'badge-confirmed', processing:'badge-processing', shipped:'badge-confirmed', delivered:'badge-approved', cancelled:'badge-cancelled' };
+  const statusBn = { pending:'অপেক্ষায়', confirmed:'নিশ্চিত', processing:'প্রক্রিয়াধীন', shipped:'পাঠানো হয়েছে', delivered:'ডেলিভারি হয়েছে', cancelled:'বাতিল' };
+  container.innerHTML = res.orders.map(o => `
+    <div style="background:white;border-radius:var(--radius);padding:20px;margin-bottom:14px;box-shadow:var(--shadow);border-left:4px solid var(--g2);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div><span style="font-family:'Noto Serif Bengali',serif;font-size:18px;font-weight:700;color:var(--g1);">${o.order_number}</span></div>
+        <span class="badge ${statusBadge[o.order_status]||'badge-pending'}">${statusBn[o.order_status]||o.order_status}</span>
+      </div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--text2);">
+        <span>📦 ${o.item_count} টি পণ্য</span>
+        <span>💰 ৳${o.grand_total}</span>
+        <span>💳 ${o.payment_method}</span>
+        <span>📅 ${new Date(o.created_at).toLocaleDateString('bn-BD')}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ============================================
+// FARMER DASHBOARD
+// ============================================
+function farmerTab(tab, el) {
+  document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  ['my-products','add-product','my-profile'].forEach(t => {
+    document.getElementById('farmer-' + t).style.display = t === tab ? 'block' : 'none';
+  });
+  if (tab === 'my-products') loadFarmerProducts();
+  if (tab === 'my-profile') loadFarmerProfile();
+}
+
+async function loadFarmerProducts() {
+  const container = document.getElementById('farmer-my-products');
+  container.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+  const res = await api('farmer_products');
+  if (!res.success || !res.products.length) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">📦</div><p>এখনও কোনো পণ্য যোগ করা হয়নি</p></div>';
+    return;
+  }
+  container.innerHTML = `
+    <div class="stat-cards">
+      <div class="stat-card"><div class="stat-card-num">${res.products.length}</div><div class="stat-card-label">মোট পণ্য</div></div>
+      <div class="stat-card"><div class="stat-card-num">${res.products.filter(p=>p.is_approved=='1').length}</div><div class="stat-card-label">অনুমোদিত</div></div>
+      <div class="stat-card"><div class="stat-card-num">${res.products.filter(p=>p.is_approved=='0').length}</div><div class="stat-card-label">অপেক্ষায়</div></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ছবি</th><th>পণ্যের নাম</th><th>মূল্য</th><th>পরিমাণ</th><th>স্ট্যাটাস</th><th>মুছুন</th></tr></thead>
+        <tbody>${res.products.map(p => `
+          <tr>
+            <td>${p.image1 ? `<img src="${p.image1}" style="width:50px;height:50px;object-fit:cover;border-radius:8px;">` : '📦'}</td>
+            <td><strong>${p.name_bn}</strong><br><small style="color:var(--text3)">${p.cat_name}</small></td>
+            <td style="color:var(--g1);font-weight:700;">৳${p.our_price}<br><small style="color:var(--text3);text-decoration:line-through;">৳${p.market_price}</small></td>
+            <td>${p.available_quantity} ${p.unit}</td>
+            <td><span class="badge ${p.is_approved=='1'?'badge-approved':'badge-unapproved'}">${p.is_approved=='1'?'✅ অনুমোদিত':'⏳ অপেক্ষায়'}</span></td>
+            <td><button onclick="deleteProduct(${p.id})" style="background:var(--red);color:white;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:12px;">মুছুন</button></td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+async function deleteProduct(id) {
+  if (!confirm('পণ্য মুছে ফেলতে চান?')) return;
+  const res = await api('delete_product', { id }, 'POST');
+  if (res.success) { toast(res.message); loadFarmerProducts(); }
+  else toast(res.message, 'error');
+}
+
+function loadFarmerProfile() {
+  if (!currentUser) return;
+  document.getElementById('farmer-profile-info').innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      ${[['নাম',currentUser.name],['ফোন',currentUser.phone],['ইমেইল',currentUser.email],['জেলা',currentUser.district||'-'],['স্ট্যাটাস',currentUser.is_verified=='1'?'✅ যাচাইকৃত':'⏳ অপেক্ষায়']].map(([l,v])=>`
+        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f0f0f0;padding-bottom:10px;">
+          <span style="font-weight:600;color:var(--text2)">${l}</span>
+          <span style="color:var(--text)">${v}</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+function updatePriceCompare() {
+  const our = parseFloat(document.getElementById('our-price-input').value) || 0;
+  const market = parseFloat(document.getElementById('market-price-input').value) || 0;
+  const box = document.getElementById('price-compare-preview');
+  if (our > 0 && market > 0) {
+    box.style.display = 'block';
+    document.getElementById('pcp-market').textContent = '৳' + market;
+    document.getElementById('pcp-our').textContent = '৳' + our;
+    document.getElementById('pcp-save').textContent = '৳' + (market - our).toFixed(0);
+  } else box.style.display = 'none';
+}
+
+function previewImages(input) {
+  const preview = document.getElementById('image-preview');
+  preview.innerHTML = '';
+  Array.from(input.files).slice(0,3).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => { const img = document.createElement('img'); img.src = e.target.result; img.className = 'preview-img'; preview.appendChild(img); };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function submitAddProduct() {
+  const form = document.getElementById('add-product-form');
+  const fd = new FormData(form);
+  const imgs = document.getElementById('product-images').files;
+  ['image1','image2','image3'].forEach((name,i) => { if(imgs[i]) fd.append(name, imgs[i]); });
+  const res = await api('add_product', fd, 'POST');
+  if (res.success) { toast(res.message); form.reset(); document.getElementById('image-preview').innerHTML = ''; document.getElementById('price-compare-preview').style.display='none'; farmerTab('my-products', document.querySelector('.dash-tab')); }
+  else toast(res.message, 'error');
+}
+
+// ============================================
+// ADMIN
+// ============================================
+async function loadAdminDashboard() {
+  const container = document.getElementById('admin-dashboard-tab');
+  container.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+  const res = await api('admin_dashboard');
+  if (!res.success) return;
+  const s = res.stats;
+  container.innerHTML = `
+    <div class="stat-cards">
+      ${[['মোট অর্ডার',s.total_orders,'📋'],['মোট আয়','৳'+parseFloat(s.total_revenue||0).toFixed(0),'💰'],['কৃষক',s.total_farmers,'🌾'],['ক্রেতা',s.total_buyers,'👤'],['পেন্ডিং পণ্য',s.pending_products,'⏳'],['পেন্ডিং অর্ডার',s.pending_orders,'🔔'],['পেন্ডিং কৃষক',s.pending_farmers,'👨‍🌾']].map(([l,v,icon])=>`
+        <div class="admin-stat-card"><div style="font-size:24px">${icon}</div><div class="admin-stat-num">${v}</div><div class="admin-stat-label">${l}</div></div>`).join('')}
+    </div>
+    <h3 style="font-family:'Noto Serif Bengali',serif;font-size:20px;color:var(--g1);margin:24px 0 14px;">সাম্প্রতিক অর্ডার</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>অর্ডার নং</th><th>ক্রেতা</th><th>মোট</th><th>পেমেন্ট</th><th>স্ট্যাটাস</th></tr></thead>
+        <tbody>${(res.recent_orders||[]).map(o=>`
+          <tr>
+            <td style="font-weight:700;color:var(--g1)">${o.order_number}</td>
+            <td>${o.buyer_name}</td>
+            <td style="font-weight:700">৳${o.grand_total}</td>
+            <td>${o.payment_method}</td>
+            <td><span class="badge badge-pending">${o.order_status}</span></td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+async function adminTab(tab, el) {
+  document.querySelectorAll('.dash-tabs .dash-tab').forEach(t => { t.classList.remove('active'); t.style.color='rgba(255,255,255,0.7)'; });
+  if (el) { el.classList.add('active'); el.style.color='var(--gold)'; }
+  ['dashboard','products','orders','farmers','settings'].forEach(t => {
+    document.getElementById('admin-' + t + '-tab').style.display = t === tab ? 'block' : 'none';
+  });
+  if (tab === 'products') loadAdminProducts();
+  if (tab === 'orders') loadAdminOrders();
+  if (tab === 'farmers') loadAdminFarmers();
+  if (tab === 'settings') loadAdminSettings();
+}
+
+async function loadAdminProducts() {
+  const container = document.getElementById('admin-products-tab');
+  container.innerHTML = '<div style="margin-bottom:14px;display:flex;gap:10px;"><button onclick="loadAdminProductsByStatus(\'pending\')" style="padding:8px 18px;border-radius:20px;background:var(--gold);border:none;font-family:inherit;cursor:pointer;font-weight:600;">⏳ অপেক্ষায়</button><button onclick="loadAdminProductsByStatus(\'approved\')" style="padding:8px 18px;border-radius:20px;background:var(--g2);color:white;border:none;font-family:inherit;cursor:pointer;font-weight:600;">✅ অনুমোদিত</button></div><div id="admin-prod-table"><div class="loading-spinner"><div class="spinner"></div></div></div>';
+  loadAdminProductsByStatus('pending');
+}
+
+async function loadAdminProductsByStatus(status) {
+  const container = document.getElementById('admin-prod-table');
+  container.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+  const res = await api('admin_products', { status });
+  if (!res.success || !res.products.length) { container.innerHTML = '<div class="empty-state"><div class="empty-icon">📦</div><p>কোনো পণ্য নেই</p></div>'; return; }
+  container.innerHTML = `<div class="table-wrap"><table>
+    <thead><tr><th>ছবি</th><th>পণ্য</th><th>কৃষক</th><th>মূল্য</th><th>পরিমাণ</th><th>অ্যাকশন</th></tr></thead>
+    <tbody>${res.products.map(p=>`
+      <tr>
+        <td>${p.image1?`<img src="${p.image1}" style="width:50px;height:50px;object-fit:cover;border-radius:8px;">`:getCatIcon(p.category_id)}</td>
+        <td><strong>${p.name_bn}</strong><br><small>${p.cat_name}</small></td>
+        <td>${p.farmer_name}</td>
+        <td>৳${p.our_price}<br><small style="text-decoration:line-through;color:#999">৳${p.market_price}</small></td>
+        <td>${p.available_quantity} ${p.unit}</td>
+        <td>
+          ${p.is_approved=='0'?`<button onclick="approveProduct(${p.id})" style="background:var(--g2);color:white;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:12px;margin-right:4px;">✅ অনুমোদন</button>`:''}
+          <button onclick="rejectProduct(${p.id})" style="background:var(--red);color:white;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:12px;">❌ বাতিল</button>
+        </td>
+      </tr>`).join('')}
+    </tbody></table></div>`;
+}
+
+async function approveProduct(id) {
+  const res = await api('approve_product', { id }, 'POST');
+  if (res.success) { toast(res.message); loadAdminProductsByStatus('pending'); } else toast(res.message,'error');
+}
+async function rejectProduct(id) {
+  if (!confirm('পণ্য প্রত্যাখ্যান করবেন?')) return;
+  const res = await api('reject_product', { id }, 'POST');
+  if (res.success) { toast(res.message,'warning'); loadAdminProductsByStatus('pending'); } else toast(res.message,'error');
+}
+
+async function loadAdminOrders() {
+  const container = document.getElementById('admin-orders-tab');
+  container.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+  const res = await api('admin_orders');
+  if (!res.success) return;
+  const statusBn = { pending:'অপেক্ষায়', confirmed:'নিশ্চিত', processing:'প্রক্রিয়াধীন', shipped:'পাঠানো হয়েছে', delivered:'ডেলিভারি হয়েছে', cancelled:'বাতিল' };
+  container.innerHTML = `<div class="table-wrap"><table>
+    <thead><tr><th>অর্ডার নং</th><th>ক্রেতা</th><th>ফোন</th><th>মোট</th><th>পেমেন্ট</th><th>জেলা</th><th>স্ট্যাটাস পরিবর্তন</th></tr></thead>
+    <tbody>${(res.orders||[]).map(o=>`
+      <tr>
+        <td style="font-weight:700;color:var(--g1)">${o.order_number}</td>
+        <td>${o.buyer_name}</td>
+        <td>${o.buyer_phone}</td>
+        <td style="font-weight:700">৳${o.grand_total}</td>
+        <td>${o.payment_method}</td>
+        <td>${o.delivery_district||'-'}</td>
+        <td>
+          <select class="status-select" onchange="updateOrderStatus(${o.id}, this.value)">
+            ${['pending','confirmed','processing','shipped','delivered','cancelled'].map(s=>`<option value="${s}" ${o.order_status===s?'selected':''}>${statusBn[s]}</option>`).join('')}
+          </select>
+        </td>
+      </tr>`).join('')}
+    </tbody></table></div>`;
+}
+
+async function updateOrderStatus(id, status) {
+  const res = await api('update_order_status', { id, status }, 'POST');
+  if (res.success) toast(res.message); else toast(res.message,'error');
+}
+
+async function loadAdminFarmers() {
+  const container = document.getElementById('admin-farmers-tab');
+  container.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+  const res = await api('admin_farmers');
+  if (!res.success) return;
+  container.innerHTML = `<div class="table-wrap"><table>
+    <thead><tr><th>নাম</th><th>ফোন</th><th>জেলা</th><th>পণ্য</th><th>স্ট্যাটাস</th><th>অ্যাকশন</th></tr></thead>
+    <tbody>${(res.farmers||[]).map(f=>`
+      <tr>
+        <td><strong>${f.name}</strong><br><small style="color:var(--text3)">${f.email}</small></td>
+        <td>${f.phone}</td>
+        <td>${f.district||'-'}</td>
+        <td style="font-weight:700;color:var(--g1)">${f.product_count}</td>
+        <td><span class="badge ${f.is_verified=='1'?'badge-approved':'badge-unapproved'}">${f.is_verified=='1'?'✅ যাচাইকৃত':'⏳ অপেক্ষায়'}</span></td>
+        <td>${f.is_verified=='0'?`<button onclick="verifyFarmer(${f.id})" style="background:var(--g2);color:white;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:12px;">✅ যাচাই করুন</button>`:'যাচাইকৃত'}</td>
+      </tr>`).join('')}
+    </tbody></table></div>`;
+}
+
+async function verifyFarmer(id) {
+  const res = await api('verify_farmer', { id }, 'POST');
+  if (res.success) { toast(res.message); loadAdminFarmers(); } else toast(res.message,'error');
+}
+
+async function loadAdminSettings() {
+  const container = document.getElementById('admin-settings-tab');
+  container.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+  const res = await api('get_settings');
+  if (!res.success) return;
+  const s = res.settings || {};
+  container.innerHTML = `
+    <div style="background:white;border-radius:var(--radius2);padding:32px;box-shadow:var(--shadow);max-width:600px;">
+      <h3 style="font-family:'Noto Serif Bengali',serif;font-size:22px;color:var(--g1);margin-bottom:24px;">⚙️ সাইট সেটিংস</h3>
+      <div class="form-group"><label class="form-label">ডিফল্ট ডেলিভারি চার্জ (টাকা)</label><input type="number" class="form-control" id="s-delivery" value="${s.default_delivery_charge||80}"></div>
+      <div class="form-group"><label class="form-label">বিকাশ নম্বর</label><input type="text" class="form-control" id="s-bkash" value="${s.bkash_number||''}"></div>
+      <div class="form-group"><label class="form-label">নগদ নম্বর</label><input type="text" class="form-control" id="s-nagad" value="${s.nagad_number||''}"></div>
+      <div class="form-group"><label class="form-label">ব্যাংকের নাম</label><input type="text" class="form-control" id="s-bank-name" value="${s.bank_name||''}"></div>
+      <div class="form-group"><label class="form-label">ব্যাংক অ্যাকাউন্ট নম্বর</label><input type="text" class="form-control" id="s-bank-acc" value="${s.bank_account||''}"></div>
+      <button class="btn-submit" onclick="saveSettings()">সেটিংস সংরক্ষণ করুন</button>
+    </div>`;
+}
+
+async function saveSettings() {
+  const data = {
+    default_delivery_charge: document.getElementById('s-delivery').value,
+    bkash_number: document.getElementById('s-bkash').value,
+    nagad_number: document.getElementById('s-nagad').value,
+    bank_name: document.getElementById('s-bank-name').value,
+    bank_account: document.getElementById('s-bank-acc').value,
+  };
+  const res = await api('update_settings', data, 'POST');
+  if (res.success) toast(res.message); else toast(res.message,'error');
+}
+
+// ============================================
+// INIT
+// ============================================
+document.addEventListener('DOMContentLoaded', async () => {
+  updateCartCount();
+  await loadCategories();
+  loadFeaturedProducts();
+  // Set first admin tab style
+  const firstAdminTab = document.getElementById('admin-tab-0');
+  if (firstAdminTab) firstAdminTab.style.color = 'rgba(255,255,255,0.7)';
+});
+
+// Close modals on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+});
+
+// Keyboard shortcut
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+});
+</script>
+</body>
+</html>
